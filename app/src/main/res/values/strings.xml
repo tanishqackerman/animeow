@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">TestAnime</string>
+    <string name="api_key">sfw</string>
+</resources>
