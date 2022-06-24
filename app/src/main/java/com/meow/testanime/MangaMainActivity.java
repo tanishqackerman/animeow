@@ -1,10 +1,7 @@
 package com.meow.testanime;
 
-import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SearchView;
-import androidx.appcompat.widget.Toolbar;
-import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -14,17 +11,17 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Toast;
 
-import com.google.android.material.navigation.NavigationView;
-import com.meow.testanime.ModelsAnime.AnimeAPIResponse;
-import com.meow.testanime.ModelsAnime.Data;
+import com.meow.testanime.ModelsManga.Data;
+import com.meow.testanime.ModelsManga.MangaAPIResponse;
 import com.meow.testanime.VIewHolderAndAdapters.AnimeAdapter;
+import com.meow.testanime.VIewHolderAndAdapters.MangaAdapter;
 
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity implements SelectListener {
+public class MangaMainActivity extends AppCompatActivity implements SelectListener {
 
     private RecyclerView recyclerView;
-    private AnimeAdapter animeAdapter;
+    private MangaAdapter mangaAdapter;
     private SearchView searchView;
     private Dialog dialog;
 
@@ -40,15 +37,15 @@ public class MainActivity extends AppCompatActivity implements SelectListener {
         dialog.show();
 
         RequestManager manager = new RequestManager(this);
-        manager.getAnimeTop(listener);
+        manager.getMangaTop(listener);
 
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
-                RequestManager manager = new RequestManager(MainActivity.this);
+                RequestManager manager = new RequestManager(MangaMainActivity.this);
                 dialog.setTitle("Fetching " + query + " animeow");
                 dialog.show();
-                manager.getAnimeSearch(listener, query);
+                manager.getMangaSearch(listener, query);
                 return true;
             }
 
@@ -59,17 +56,17 @@ public class MainActivity extends AppCompatActivity implements SelectListener {
         });
     }
 
-    private final OnFetchDataListener<AnimeAPIResponse> listener = new OnFetchDataListener<AnimeAPIResponse>() {
+    private final OnFetchMangaDataListener<MangaAPIResponse> listener = new OnFetchMangaDataListener<MangaAPIResponse>() {
         @Override
-        public void onFetchData(List<Data> list, String message) {
-            if (list.isEmpty()) Toast.makeText(MainActivity.this, "No Data Found!", Toast.LENGTH_SHORT).show();
+        public void onFetchMangaData(List<Data> list, String message) {
+            if (list.isEmpty()) Toast.makeText(MangaMainActivity.this, "No Data Found!", Toast.LENGTH_SHORT).show();
             showAnime(list);
             dialog.dismiss();
         }
 
         @Override
         public void onError(String message) {
-            Toast.makeText(MainActivity.this, "An Error Occurred!", Toast.LENGTH_SHORT).show();
+            Toast.makeText(MangaMainActivity.this, "An Error Occurred!", Toast.LENGTH_SHORT).show();
         }
     };
 
@@ -77,18 +74,18 @@ public class MainActivity extends AppCompatActivity implements SelectListener {
         recyclerView = findViewById(R.id.rv);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new GridLayoutManager(this, 3));
-        animeAdapter = new AnimeAdapter(this, list, this);
-        recyclerView.setAdapter(animeAdapter);
+        mangaAdapter = new MangaAdapter(this, list, this);
+        recyclerView.setAdapter(mangaAdapter);
     }
 
     @Override
-    public void OnAnimeClicked(Data data) {
-        startActivity(new Intent(MainActivity.this, AnimeDetails.class).putExtra("data", data));
+    public void OnAnimeClicked(com.meow.testanime.ModelsAnime.Data data) {
+
     }
 
     @Override
-    public void OnMangaClicked(com.meow.testanime.ModelsManga.Data data) {
-
+    public void OnMangaClicked(Data data) {
+        startActivity(new Intent(MangaMainActivity.this, MangaDetails.class).putExtra("data", data));
     }
 
     @Override

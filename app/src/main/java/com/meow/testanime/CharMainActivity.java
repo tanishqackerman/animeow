@@ -1,10 +1,7 @@
 package com.meow.testanime;
 
-import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SearchView;
-import androidx.appcompat.widget.Toolbar;
-import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -14,17 +11,16 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Toast;
 
-import com.google.android.material.navigation.NavigationView;
-import com.meow.testanime.ModelsAnime.AnimeAPIResponse;
-import com.meow.testanime.ModelsAnime.Data;
-import com.meow.testanime.VIewHolderAndAdapters.AnimeAdapter;
+import com.meow.testanime.ModelsCharacter.Data;
+import com.meow.testanime.ModelsCharacter.CharAPIResponse;
+import com.meow.testanime.VIewHolderAndAdapters.CharAdapter;
 
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity implements SelectListener {
+public class CharMainActivity extends AppCompatActivity implements SelectListener{
 
     private RecyclerView recyclerView;
-    private AnimeAdapter animeAdapter;
+    private CharAdapter charAdapter;
     private SearchView searchView;
     private Dialog dialog;
 
@@ -40,15 +36,15 @@ public class MainActivity extends AppCompatActivity implements SelectListener {
         dialog.show();
 
         RequestManager manager = new RequestManager(this);
-        manager.getAnimeTop(listener);
+        manager.getCharTop(listener);
 
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
-                RequestManager manager = new RequestManager(MainActivity.this);
+                RequestManager manager = new RequestManager(CharMainActivity.this);
                 dialog.setTitle("Fetching " + query + " animeow");
                 dialog.show();
-                manager.getAnimeSearch(listener, query);
+                manager.getCharSearch(listener, query);
                 return true;
             }
 
@@ -59,31 +55,31 @@ public class MainActivity extends AppCompatActivity implements SelectListener {
         });
     }
 
-    private final OnFetchDataListener<AnimeAPIResponse> listener = new OnFetchDataListener<AnimeAPIResponse>() {
+    private final OnFetchCharacterDataListener<CharAPIResponse> listener = new OnFetchCharacterDataListener<CharAPIResponse>() {
         @Override
-        public void onFetchData(List<Data> list, String message) {
-            if (list.isEmpty()) Toast.makeText(MainActivity.this, "No Data Found!", Toast.LENGTH_SHORT).show();
-            showAnime(list);
+        public void onFetchCharacterData(List<Data> list, String message) {
+            if (list.isEmpty()) Toast.makeText(CharMainActivity.this, "No Data Found!", Toast.LENGTH_SHORT).show();
+            showChar(list);
             dialog.dismiss();
         }
 
         @Override
         public void onError(String message) {
-            Toast.makeText(MainActivity.this, "An Error Occurred!", Toast.LENGTH_SHORT).show();
+            Toast.makeText(CharMainActivity.this, "An Error Occurred!" + message, Toast.LENGTH_SHORT).show();
         }
     };
 
-    private void showAnime(List<Data> list) {
+    private void showChar(List<Data> list) {
         recyclerView = findViewById(R.id.rv);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new GridLayoutManager(this, 3));
-        animeAdapter = new AnimeAdapter(this, list, this);
-        recyclerView.setAdapter(animeAdapter);
+        charAdapter = new CharAdapter(this, list, this);
+        recyclerView.setAdapter(charAdapter);
     }
 
     @Override
-    public void OnAnimeClicked(Data data) {
-        startActivity(new Intent(MainActivity.this, AnimeDetails.class).putExtra("data", data));
+    public void OnAnimeClicked(com.meow.testanime.ModelsAnime.Data data) {
+
     }
 
     @Override
@@ -93,6 +89,6 @@ public class MainActivity extends AppCompatActivity implements SelectListener {
 
     @Override
     public void OnCharacterClicked(com.meow.testanime.ModelsCharacter.Data data) {
-
+        startActivity(new Intent(CharMainActivity.this, CharDetails.class).putExtra("data", data));
     }
 }

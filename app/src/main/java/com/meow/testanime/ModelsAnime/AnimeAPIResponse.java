@@ -1,8 +1,6 @@
-package com.meow.testanime.Models;
+package com.meow.testanime.ModelsAnime;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 public class AnimeAPIResponse implements Serializable {

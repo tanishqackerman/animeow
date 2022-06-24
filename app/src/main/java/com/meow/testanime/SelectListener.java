@@ -1,7 +1,7 @@
 package com.meow.testanime;
 
-import com.meow.testanime.Models.Data;
-
 public interface SelectListener {
-    void OnAnimeClicked(Data data);
+    void OnAnimeClicked(com.meow.testanime.ModelsAnime.Data data);
+    void OnMangaClicked(com.meow.testanime.ModelsManga.Data data);
+    void OnCharacterClicked(com.meow.testanime.ModelsCharacter.Data data);
 }

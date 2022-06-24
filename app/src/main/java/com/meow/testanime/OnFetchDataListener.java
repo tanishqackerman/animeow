@@ -1,6 +1,6 @@
 package com.meow.testanime;
 
-import com.meow.testanime.Models.Data;
+import com.meow.testanime.ModelsAnime.Data;
 
 import java.util.List;
 

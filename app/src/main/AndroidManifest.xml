@@ -11,16 +11,36 @@
         android:fullBackupContent="@xml/backup_rules"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
+        android:largeHeap="true"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.TestAnime"
         tools:targetApi="31">
         <activity
-            android:name=".AnimeDetails"
+            android:name=".MeowNavigationBar"
+            android:exported="false" />
+        <activity
+            android:name=".CharDetails"
+            android:exported="false" />
+        <activity
+            android:name=".CharMainActivity"
+            android:exported="false" />
+        <activity
+            android:name=".MangaMainActivity"
             android:exported="false" />
         <activity
             android:name=".MainActivity"
+            android:exported="false" />
+        <activity
+            android:name=".AnimeDetails"
+            android:exported="false" />
+        <activity
+            android:name=".MangaDetails"
+            android:exported="false" />
+        <activity
+            android:name=".AnimeowHomeScreen"
             android:exported="true">
+<!--            android:theme="@style/Theme.MaterialComponents.NoActionBar">-->
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

@@ -5,8 +5,14 @@
       <map>
         <entry key="..\:/Users/tanis/AndroidStudioProjects/TestAnime/app/src/main/res/drawable/shadoweffect.xml" value="0.222" />
         <entry key="..\:/Users/tanis/AndroidStudioProjects/TestAnime/app/src/main/res/layout/activity_anime_details.xml" value="0.2" />
+        <entry key="..\:/Users/tanis/AndroidStudioProjects/TestAnime/app/src/main/res/layout/activity_animeow_home_screen.xml" value="0.1791363830696879" />
+        <entry key="..\:/Users/tanis/AndroidStudioProjects/TestAnime/app/src/main/res/layout/activity_char_details.xml" value="0.19067977768277042" />
         <entry key="..\:/Users/tanis/AndroidStudioProjects/TestAnime/app/src/main/res/layout/activity_main.xml" value="0.19067977768277042" />
+        <entry key="..\:/Users/tanis/AndroidStudioProjects/TestAnime/app/src/main/res/layout/activity_manga_details.xml" value="0.18982471141513468" />
+        <entry key="..\:/Users/tanis/AndroidStudioProjects/TestAnime/app/src/main/res/layout/activity_meow_navigation_bar.xml" value="0.19067977768277042" />
         <entry key="..\:/Users/tanis/AndroidStudioProjects/TestAnime/app/src/main/res/layout/animeitem.xml" value="0.19067977768277042" />
+        <entry key="..\:/Users/tanis/AndroidStudioProjects/TestAnime/app/src/main/res/layout/meownavheader.xml" value="0.18982471141513468" />
+        <entry key="..\:/Users/tanis/AndroidStudioProjects/TestAnime/app/src/main/res/menu/iconmenu.xml" value="0.18982471141513468" />
       </map>
     </option>
   </component>

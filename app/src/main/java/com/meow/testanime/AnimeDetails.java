@@ -9,11 +9,11 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.meow.testanime.Models.Aired;
-import com.meow.testanime.Models.Data;
-import com.meow.testanime.Models.Images;
-import com.meow.testanime.Models.Jpg;
-import com.meow.testanime.Models.Trailer;
+import com.meow.testanime.ModelsAnime.Aired;
+import com.meow.testanime.ModelsAnime.Data;
+import com.meow.testanime.ModelsAnime.Images;
+import com.meow.testanime.ModelsAnime.Jpg;
+import com.meow.testanime.ModelsAnime.Trailer;
 import com.squareup.picasso.Picasso;
 
 public class AnimeDetails extends AppCompatActivity {
@@ -45,7 +45,8 @@ public class AnimeDetails extends AppCompatActivity {
         Aired string = data.getAired();
         animeairingperiod.setText(string.getString());
 
-        animetitle.setText(data.getTitle());
+        if (data.getTitleEnglish() == null) animetitle.setText(data.getTitle());
+        else animetitle.setText(data.getTitleEnglish());
         animescore.setText(data.getScore() + "");
         animeep.setText(data.getEpisodes() + "");
         animeag.setText(data.getRating());

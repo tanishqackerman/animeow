@@ -1,4 +1,4 @@
-package com.meow.testanime.Models;
+package com.meow.testanime.ModelsManga;
 
 import java.io.Serializable;
 

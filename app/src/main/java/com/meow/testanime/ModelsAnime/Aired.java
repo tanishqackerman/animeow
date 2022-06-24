@@ -1,4 +1,4 @@
-package com.meow.testanime.Models;
+package com.meow.testanime.ModelsAnime;
 
 import java.io.Serializable;
 import java.util.Date;
