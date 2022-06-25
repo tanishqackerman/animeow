@@ -53,16 +53,33 @@
 
             </TextView>
 
-            <TextView
-                android:id="@+id/learnmore"
-                android:textColor="#DDAE37"
-                android:text="Learn More"
-                android:textStyle="bold"
-                android:layout_margin="8dp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
 
-            </TextView>
+                <TextView
+                    android:id="@+id/learnmore"
+                    android:textColor="#DDAE37"
+                    android:text="Learn More"
+                    android:textStyle="bold"
+                    android:layout_margin="8dp"
+                    android:layout_gravity="center"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+                </TextView>
+
+                <ImageView
+                    android:id="@+id/star"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_margin="8dp">
+
+                </ImageView>
+
+            </LinearLayout>
+
 
             <TextView
                 android:id="@+id/chardescription"

@@ -49,6 +49,13 @@
                 android:layout_margin="5dp"
                 android:orientation="horizontal">
 
+<!--                <LinearLayout-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="500dp"-->
+<!--                    android:orientation="vertical">-->
+
+<!--                </LinearLayout>-->
+
                 <ImageView
                     android:id="@+id/robin"
                     android:layout_width="wrap_content"
@@ -82,6 +89,24 @@
                     android:layout_height="500dp"
                     android:adjustViewBounds="true"
                     android:src="@drawable/boa1">
+
+                </ImageView>
+
+                <ImageView
+                    android:id="@+id/robinnew"
+                    android:layout_width="wrap_content"
+                    android:layout_height="500dp"
+                    android:adjustViewBounds="true"
+                    android:src="@drawable/robinnew">
+
+                </ImageView>
+
+                <ImageView
+                    android:id="@+id/boa3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="500dp"
+                    android:adjustViewBounds="true"
+                    android:src="@drawable/boa3">
 
                 </ImageView>
             </LinearLayout>

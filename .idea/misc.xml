@@ -3,6 +3,7 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/tanis/AndroidStudioProjects/TestAnime/app/src/main/res/drawable/ic_baseline_bookmark_24.xml" value="0.217" />
         <entry key="..\:/Users/tanis/AndroidStudioProjects/TestAnime/app/src/main/res/drawable/shadoweffect.xml" value="0.222" />
         <entry key="..\:/Users/tanis/AndroidStudioProjects/TestAnime/app/src/main/res/layout/activity_anime_details.xml" value="0.2" />
         <entry key="..\:/Users/tanis/AndroidStudioProjects/TestAnime/app/src/main/res/layout/activity_animeow_home_screen.xml" value="0.1791363830696879" />

@@ -149,16 +149,53 @@
 
             </LinearLayout>
 
-            <TextView
-                android:id="@+id/learnmore"
-                android:textColor="#DDAE37"
-                android:text="Learn More"
-                android:textStyle="bold"
-                android:layout_margin="8dp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
 
-            </TextView>
+                <TextView
+                    android:id="@+id/learnmore"
+                    android:textColor="#DDAE37"
+                    android:text="Learn More"
+                    android:textStyle="bold"
+                    android:layout_gravity="center"
+                    android:layout_margin="8dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+                </TextView>
+
+                <LinearLayout
+                    android:id="@+id/watchlist"
+                    android:orientation="horizontal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+                    <ImageView
+                        android:id="@+id/bookmark"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:layout_margin="8dp">
+
+                    </ImageView>
+
+                    <TextView
+                        android:id="@+id/watchtext"
+                        android:textColor="#AE8AE5"
+                        android:textStyle="bold"
+                        android:layout_margin="3dp"
+                        android:layout_gravity="center"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
+
+                    </TextView>
+
+                </LinearLayout>
+
+
+            </LinearLayout>
+
 
             <TextView
                 android:id="@+id/mangadescription"

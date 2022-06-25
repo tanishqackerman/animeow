@@ -17,6 +17,18 @@
         android:theme="@style/Theme.TestAnime"
         tools:targetApi="31">
         <activity
+            android:name=".MangaWatchListDetails"
+            android:exported="false" />
+        <activity
+            android:name=".CharStarred"
+            android:exported="false" />
+        <activity
+            android:name=".MangaWatchList"
+            android:exported="false" />
+        <activity
+            android:name=".AnimeWatchList"
+            android:exported="false" />
+        <activity
             android:name=".MeowNavigationBar"
             android:exported="false" />
         <activity
@@ -35,12 +47,19 @@
             android:name=".AnimeDetails"
             android:exported="false" />
         <activity
+            android:name=".CharStarredDetails"
+            android:exported="false" />
+        <activity
             android:name=".MangaDetails"
+            android:exported="false" />
+        <activity
+            android:name=".AnimeWatchListDetails"
             android:exported="false" />
         <activity
             android:name=".AnimeowHomeScreen"
             android:exported="true">
-<!--            android:theme="@style/Theme.MaterialComponents.NoActionBar">-->
+
+            <!-- android:theme="@style/Theme.MaterialComponents.NoActionBar"> -->
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

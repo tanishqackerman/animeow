@@ -10,18 +10,17 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.meow.testanime.DBModels.AnimeDB;
 import com.meow.testanime.DBModels.MangaDB;
-import com.meow.testanime.ModelsManga.Published;
 import com.meow.testanime.ModelsManga.Data;
 import com.meow.testanime.ModelsManga.Images;
 import com.meow.testanime.ModelsManga.Jpg;
-import com.meow.testanime.TableData.DBHandlerAnime;
+import com.meow.testanime.ModelsManga.Published;
 import com.meow.testanime.TableData.DBHandlerManga;
 import com.squareup.picasso.Picasso;
 
-public class MangaDetails extends AppCompatActivity {
-    private Data data;
+public class MangaWatchListDetails extends AppCompatActivity {
+
+    private MangaDB data;
     private ImageView mangaposter, bookmark;
     private TextView mangatitle, mangascore, mangapublishingperiod, mangach, mangavolumes, mangadescription, learnmore, watchtext;
     private LinearLayout watchlist;
@@ -31,7 +30,7 @@ public class MangaDetails extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_manga_details);
 
-        DBHandlerManga db = new DBHandlerManga(MangaDetails.this);
+        DBHandlerManga db = new DBHandlerManga(MangaWatchListDetails.this);
 
         mangaposter = findViewById(R.id.mangaposter);
         mangatitle = findViewById(R.id.mangatitle);
@@ -45,28 +44,23 @@ public class MangaDetails extends AppCompatActivity {
         bookmark = findViewById(R.id.bookmark);
         watchlist = findViewById(R.id.watchlist);
 
-        data = (Data) getIntent().getSerializableExtra("data");
-        Images imgdata = data.getImages();
-        Jpg imgjpg = imgdata.getJpg();
-        if (imgjpg.getImageUrl() != null) Picasso.get().load(imgjpg.getImageUrl()).into(mangaposter);
+        data = (MangaDB) getIntent().getSerializableExtra("data");
+        if (data.getImgurl() != null) Picasso.get().load(data.getImgurl()).into(mangaposter);
 
-        Published string = data.getPublished();
-        mangapublishingperiod.setText(string.getString());
+        mangapublishingperiod.setText(data.getMangapublishingperiod());
 
-        if (data.getTitleEnglish() == null) mangatitle.setText(data.getTitle());
-        else mangatitle.setText(data.getTitleEnglish());
-        mangascore.setText(data.getScore() + "");
-        mangach.setText(data.getChapters() + "");
-        mangavolumes.setText(data.getVolumes() + "");
-        mangadescription.setText(data.getSynopsis());
+        mangatitle.setText(data.getAnimename());
+        mangascore.setText(data.getMangascore() + "");
+        mangach.setText(data.getMangach() + "");
+        mangavolumes.setText(data.getMangavol() + "");
+        mangadescription.setText(data.getMangaabout());
 
         learnmore.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String url = data.getUrl();
                 CustomTabsIntent.Builder builder = new CustomTabsIntent.Builder();
                 CustomTabsIntent intent = builder.build();
-                intent.launchUrl(MangaDetails.this, Uri.parse(url));
+                intent.launchUrl(MangaWatchListDetails.this, Uri.parse(data.getLearnmore()));
             }
         });
 
@@ -83,7 +77,7 @@ public class MangaDetails extends AppCompatActivity {
         watchlist.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                MangaDB mangaDB = new MangaDB(mangatitle.getText().toString(), imgjpg.getImageUrl(), mangascore.getText().toString(), mangapublishingperiod.getText().toString(), mangach.getText().toString(), mangavolumes.getText().toString(), data.getUrl(), data.getSynopsis());
+                MangaDB mangaDB = new MangaDB(mangatitle.getText().toString(), data.getImgurl(), mangascore.getText().toString(), mangapublishingperiod.getText().toString(), mangach.getText().toString(), mangavolumes.getText().toString(), data.getLearnmore(), data.getMangaabout());
                 if (watchtext.getText().equals("Bookmark")) {
                     db.addMangaWatchList(mangaDB);
                     watchtext.setText("Remove Bookmark");

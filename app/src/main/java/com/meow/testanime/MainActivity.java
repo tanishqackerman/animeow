@@ -15,6 +15,9 @@ import android.os.Bundle;
 import android.widget.Toast;
 
 import com.google.android.material.navigation.NavigationView;
+import com.meow.testanime.DBModels.AnimeDB;
+import com.meow.testanime.DBModels.CharDB;
+import com.meow.testanime.DBModels.MangaDB;
 import com.meow.testanime.ModelsAnime.AnimeAPIResponse;
 import com.meow.testanime.ModelsAnime.Data;
 import com.meow.testanime.VIewHolderAndAdapters.AnimeAdapter;
@@ -93,6 +96,21 @@ public class MainActivity extends AppCompatActivity implements SelectListener {
 
     @Override
     public void OnCharacterClicked(com.meow.testanime.ModelsCharacter.Data data) {
+
+    }
+
+    @Override
+    public void OnMangaClicked(MangaDB mangaDB) {
+
+    }
+
+    @Override
+    public void OnAnimeClicked(AnimeDB animeDB) {
+
+    }
+
+    @Override
+    public void OnCharacterClicked(CharDB data) {
 
     }
 }

@@ -1,26 +1,21 @@
 package com.meow.testanime;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.browser.customtabs.CustomTabsIntent;
-
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.browser.customtabs.CustomTabsIntent;
+
 import com.meow.testanime.DBModels.CharDB;
-import com.meow.testanime.DBModels.MangaDB;
-import com.meow.testanime.ModelsCharacter.Data;
-import com.meow.testanime.ModelsCharacter.Images;
-import com.meow.testanime.ModelsCharacter.Jpg;
 import com.meow.testanime.TableData.DBHandlerChar;
-import com.meow.testanime.TableData.DBHandlerManga;
 import com.squareup.picasso.Picasso;
 
-public class CharDetails extends AppCompatActivity {
+public class CharStarredDetails extends AppCompatActivity {
 
-    private Data data;
+    private CharDB data;
     private ImageView charposter, star;
     private TextView chartitle, chardescription, learnmore;
 
@@ -29,7 +24,7 @@ public class CharDetails extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_char_details);
 
-        DBHandlerChar db = new DBHandlerChar(CharDetails.this);
+        DBHandlerChar db = new DBHandlerChar(CharStarredDetails.this);
 
         charposter = findViewById(R.id.charposter);
         chartitle = findViewById(R.id.chartitle);
@@ -37,36 +32,32 @@ public class CharDetails extends AppCompatActivity {
         learnmore = findViewById(R.id.learnmore);
         star = findViewById(R.id.star);
 
-        data = (Data) getIntent().getSerializableExtra("data");
-        Images imgdata = data.getImages();
-        Jpg imgjpg = imgdata.getJpg();
-        if (imgjpg.getImageUrl() != null) Picasso.get().load(imgjpg.getImageUrl()).into(charposter);
+        data = (CharDB) getIntent().getSerializableExtra("data");
+        if (data.getImgurl() != null) Picasso.get().load(data.getImgurl()).into(charposter);
 
-        chartitle.setText(data.getName());
-        chardescription.setText(data.getAbout());
+        chartitle.setText(data.getCharname());
+        chardescription.setText(data.getCharabout());
 
         learnmore.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String url = data.getUrl();
                 CustomTabsIntent.Builder builder = new CustomTabsIntent.Builder();
                 CustomTabsIntent intent = builder.build();
-                intent.launchUrl(CharDetails.this, Uri.parse(url));
+                intent.launchUrl(CharStarredDetails.this, Uri.parse(data.getLearnmore()));
             }
         });
 
-        boolean watchlistAdded = db.hasObject(chartitle.getText().toString());
+        boolean watchlistAdded = db.hasObject(data.getCharname());
         if (!watchlistAdded) {
             star.setImageResource(R.drawable.ic_baseline_star_border_24);
-        }
-        else {
+        } else {
             star.setImageResource(R.drawable.ic_baseline_star_24);
         }
 
         star.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                CharDB charDB = new CharDB(chartitle.getText().toString(), imgjpg.getImageUrl(), data.getUrl(), data.getAbout());
+                CharDB charDB = new CharDB(chartitle.getText().toString(), data.getImgurl(), data.getLearnmore(), data.getCharabout());
                 if (!watchlistAdded) {
                     db.addCharWatchList(charDB);
                     star.setImageResource(R.drawable.ic_baseline_star_24);

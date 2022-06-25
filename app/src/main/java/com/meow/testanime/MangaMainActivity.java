@@ -11,6 +11,9 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Toast;
 
+import com.meow.testanime.DBModels.AnimeDB;
+import com.meow.testanime.DBModels.CharDB;
+import com.meow.testanime.DBModels.MangaDB;
 import com.meow.testanime.ModelsManga.Data;
 import com.meow.testanime.ModelsManga.MangaAPIResponse;
 import com.meow.testanime.VIewHolderAndAdapters.AnimeAdapter;
@@ -90,6 +93,21 @@ public class MangaMainActivity extends AppCompatActivity implements SelectListen
 
     @Override
     public void OnCharacterClicked(com.meow.testanime.ModelsCharacter.Data data) {
+
+    }
+
+    @Override
+    public void OnMangaClicked(MangaDB mangaDB) {
+
+    }
+
+    @Override
+    public void OnAnimeClicked(AnimeDB animeDB) {
+
+    }
+
+    @Override
+    public void OnCharacterClicked(CharDB data) {
 
     }
 }
